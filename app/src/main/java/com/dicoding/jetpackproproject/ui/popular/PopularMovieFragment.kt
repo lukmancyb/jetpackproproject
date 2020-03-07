@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.jetpackproproject.R
-import com.dicoding.jetpackproproject.core.base.ApiResponse
 import com.dicoding.jetpackproproject.core.utils.Coroutines
 import com.dicoding.jetpackproproject.core.utils.showLoading
 import com.dicoding.jetpackproproject.core.utils.showToast
@@ -52,7 +51,7 @@ class PopularMovieFragment : Fragment() {
 
             Coroutines.main{
 
-            viewModelPopular.getUpcomingMovie().observe(this, Observer { res ->
+            viewModelPopular.getPopularMovie().observe(this, Observer { res ->
                 progress_movie.showLoading(false)
                 if (!res.isNullOrEmpty()){
                     onMovieFetched(res)

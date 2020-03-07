@@ -43,18 +43,16 @@ class UpcomingMovieViewModel(private val repository: MovieRepository) : ViewMode
 //
 //    }
 
-      fun getUpcomingMovie()  : LiveData<List<MovieEntity>>{
+    fun getUpcomingMovie() = repository.getUpcomingMovie()
+    fun getDataDummy(): LiveData<List<String>> {
 
-          val data = MutableLiveData<List<MovieEntity>>()
-          Coroutines.main{
-             data.postValue( repository.getUpcomingMovie())
+        val data = MutableLiveData<List<String>>()
 
-          }
+        data.postValue(listOf("aku", "kamu"))
 
-          return data
+        return data
 
-     }
-
+    }
 
 
 }

@@ -47,9 +47,8 @@ class PopularMovieViewModel(private val repository: MovieRepository) : ViewModel
 //        return data
 //
 //    }
-     fun getUpcomingMovie() = liveData {
-        emit(repository.getPopularMovie())
-    }
+     fun getPopularMovie() = repository.getPopularMovie()
+
 
 
 }

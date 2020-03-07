@@ -1,10 +1,13 @@
 package com.dicoding.jetpackproproject.ui.upcoming
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.dicoding.jetpackproproject.core.utils.Coroutines
+import com.dicoding.jetpackproproject.core.utils.LiveDataTestUtil
 import com.dicoding.jetpackproproject.data.source.remote.model.MovieEntity
 import com.dicoding.jetpackproproject.data.source.repositories.MovieRepository
+import com.nhaarman.mockitokotlin2.verify
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull
 import kotlinx.coroutines.*
@@ -15,26 +18,24 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 import java.io.IOException
 
 
-@ExperimentalCoroutinesApi
-@ObsoleteCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class UpcomingMovieViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private val mainThreadSurrogate = newSingleThreadContext("      UI thread")
 
     @Mock
     private lateinit var viewModel: UpcomingMovieViewModel
 
-    @Mock
-    private lateinit var repo: MovieRepository
+    private  val repo = mock(MovieRepository::class.java)
 
 
     @Mock
@@ -42,8 +43,6 @@ class UpcomingMovieViewModelTest {
 
     @Before
     fun setUp() {
-        Dispatchers.setMain(mainThreadSurrogate)
-        MockitoAnnotations.initMocks(this)
         viewModel = UpcomingMovieViewModel(repo)
     }
 
@@ -56,8 +55,16 @@ class UpcomingMovieViewModelTest {
     @Test
     @Throws(Exception::class)
     fun getUpcomingMovie() {
-        val data = viewModel.getUpcomingMovie().value
-        assertNotNull(data?.size)
+
+//        val data = repo.getUpcomingMovie().value
+
+        val courseEntities =  viewModel.getUpcomingMovie().value
+        verify(repo).getUpcomingMovie()
+        assertNotNull(courseEntities)
+        assertEquals(20, courseEntities?.size)
+
+//        viewModel.getUpcomingMovie().observeForever(observer)
+//        verify(observer).onChanged(data)
 
 
 

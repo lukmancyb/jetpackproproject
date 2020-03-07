@@ -1,6 +1,9 @@
 package com.dicoding.jetpackproproject.data.source.repositories
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.dicoding.jetpackproproject.core.base.BaseResponse
+import com.dicoding.jetpackproproject.core.utils.Coroutines
 import com.dicoding.jetpackproproject.data.source.MovieDataSource
 import com.dicoding.jetpackproproject.data.source.remote.RemoteDataSource
 import com.dicoding.jetpackproproject.data.source.remote.model.MovieEntity
@@ -18,35 +21,43 @@ class MovieRepository(private val remoteDataSource: RemoteDataSource) : MovieDat
     }
 
 
-    override suspend fun getPopularMovie(): List<MovieEntity> {
-        val moviesResult : MutableList<MovieEntity> = mutableListOf()
+    override  fun getPopularMovie(): LiveData<List<MovieEntity>> {
+        val moviesResult = MutableLiveData<List<MovieEntity>>()
+
+        Coroutines.main {
+
 
         remoteDataSource.getPopularMovies(object : RemoteDataSource.LoadMoviesCallback {
                 override fun onMoviesReceived(data: BaseResponse<MovieEntity>) {
-                    moviesResult.addAll(data.results)
+                    moviesResult.postValue(data.results)
                 }
             })
+        }
+
 
 
         return moviesResult
     }
 
-    override suspend fun getUpcomingMovie(): List<MovieEntity> {
-        val moviesResult : MutableList<MovieEntity> = mutableListOf()
+    override  fun getUpcomingMovie(): LiveData<List<MovieEntity>> {
+        val moviesResult =  MutableLiveData<List<MovieEntity>>()
 
+        Coroutines.main {
             remoteDataSource.getUpcomingMovies(object : RemoteDataSource.LoadMoviesCallback {
                 override fun onMoviesReceived(data: BaseResponse<MovieEntity>) {
-                    moviesResult.addAll(data.results)
+                    moviesResult.postValue(data.results)
                 }
             })
+        }
 
         return moviesResult
     }
 
 
-    override suspend fun getDetailMovie(id: String): MovieEntity {
+    override  fun getDetailMovie(id: String): MovieEntity {
         var movieEntity: MovieEntity? = null
 
+        Coroutines.main {
             remoteDataSource.getDetailMovie(id, object : RemoteDataSource.LoadDetailMovieCallback {
                 override fun onMovieReceived(data: MovieEntity?) {
                     data?.let {
@@ -55,6 +66,8 @@ class MovieRepository(private val remoteDataSource: RemoteDataSource) : MovieDat
                 }
 
             })
+        }
+
 
         return movieEntity!!
     }

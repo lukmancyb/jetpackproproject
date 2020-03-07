@@ -5,7 +5,7 @@ import com.dicoding.jetpackproproject.data.source.remote.model.MovieEntity
 
 interface MovieDataSource {
 
-      suspend fun getPopularMovie(): List<MovieEntity>
-      suspend fun getUpcomingMovie() : List<MovieEntity>
-     suspend fun getDetailMovie(id: String): MovieEntity
+    fun getPopularMovie(): LiveData<List<MovieEntity>>
+    fun getUpcomingMovie(): LiveData<List<MovieEntity>>
+    fun getDetailMovie(id: String): MovieEntity
 }
