@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Proyek Academies</string>
+
+    <string name="upcoming">Up Coming</string>
+    <string name="popular">Popular</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_buy_ticket">Buy Ticket</string>
+    <string name="detail_activity_name">Detail Show</string>
+    <string name="label_home">Home</string>
+</resources>

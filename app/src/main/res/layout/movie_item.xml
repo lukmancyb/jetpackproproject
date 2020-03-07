@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="4dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:id="@+id/imgMovie"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:id="@+id/titleMovie"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgMovie"
+        app:layout_constraintTop_toTopOf="@+id/imgMovie"
+        tools:text="The Light Restaurant" />
+
+    <TextView
+        android:id="@+id/dateMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_label"
+        android:padding="4dp"
+        android:paddingStart="6dp"
+        android:paddingLeft="8dp"
+        android:paddingEnd="6dp"
+        android:paddingRight="8dp"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/titleMovie"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/titleMovie"
+        app:layout_constraintTop_toBottomOf="@+id/titleMovie"
+        tools:ignore="SmallSp"
+        tools:text="Breakfast" />
+
+    <TextView
+
+        android:id="@+id/popularityMovie"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@+id/imgMovie"
+        app:layout_constraintStart_toStartOf="@+id/titleMovie"
+        tools:text="16 Viewers" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/popularityMovie"
+        app:layout_constraintEnd_toStartOf="@+id/rattingMovie"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/popularityMovie"
+        app:layout_constraintTop_toTopOf="@+id/popularityMovie"
+        android:src="@drawable/ic_star"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/rattingMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        tools:text="6.6"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/popularityMovie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/popularityMovie" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/dotted"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rattingMovie"
+        app:layout_constraintStart_toStartOf="@+id/imgMovie"
+        app:layout_constraintTop_toBottomOf="@+id/imgMovie"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/overviewMovie"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/popularityMovie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgMovie"
+        app:layout_constraintTop_toBottomOf="@+id/dateMovie"
+        tools:text="TextView" />
+</androidx.constraintlayout.widget.ConstraintLayout>
